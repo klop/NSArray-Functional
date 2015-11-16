@@ -8,14 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-typedef id (^mapBlock)(id object);
-typedef BOOL (^filterBlock)(id object);
-typedef id (^reduceBlock)(id reducedObject, id object);
+typedef id (^mapFuncBlock)(id object);
+typedef BOOL (^filterFuncBlock)(id object);
+typedef id (^reduceFuncBlock)(id reducedObject, id object);
+
+typedef NSArray *(^mapBlock)(mapFuncBlock block);
+typedef NSArray *(^filterBlock)(filterFuncBlock block);
+typedef id (^reduceBlock)(reduceFuncBlock block);
 
 @interface NSArray (Functional)
 
-- (NSArray *)map:(mapBlock)block;
-- (NSArray *)filter:(filterBlock)block;
-- (id)reduce:(reduceBlock)block;
+@property (nonatomic, copy, readonly) mapBlock map;
+@property (nonatomic, copy, readonly) filterBlock filter;
+@property (nonatomic, copy, readonly) reduceBlock reduce;
 
 @end
