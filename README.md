@@ -1,6 +1,6 @@
-# NSArray-Functional
+# NSArray+Functional
 
-Higher order functions with chainable syntax in Objective-C.
+Higher order functions on `NSArray` with chainable syntax in Objective-C.
 
 ```Objective-C
 
