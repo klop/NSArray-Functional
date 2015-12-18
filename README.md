@@ -24,7 +24,7 @@ NSLog(@"The sum is: %li!", (long)sum.integerValue); // "The sum is: 55!"
 ```
 ## Functions
 
-Example array: `@[ @(1), @(2), @(3), @(3), @(3), @(4), @(4), @(5) ]`
+__Example array__: `NSArray *array = @[ @(1), @(2), @(3), @(3), @(3), @(4), @(4), @(5) ];`
 
 ### map
 Returns an array containing the results of calling a function on each element of the array.
@@ -66,15 +66,15 @@ array.head(4); // Returns @[ @(1), @(2), @(3), @(3) ]
 ### tail
 Returns an array containing the last `n` elements of the array.
 ```Objective-C
-array.tail(2) // Returns @[ @(4), @(5) ]
+array.tail(2); // Returns @[ @(4), @(5) ]
 ```
 ### uniq
 Returns an array of unique objects.
 ```Objective-C
-array.uniq // Returns @[ @(1), @(2), @(3), @(4), @(5) ]
+array.uniq; // Returns @[ @(1), @(2), @(3), @(4), @(5) ]
 ```
 ### shuf
 Returns an randomly sorted array.
 ```Objective-C
-array.shuf // Returns @[ @(3), @(3), @(1), @(3), @(4), @(5), @(4), @(2) ] (or any other random order)
+array.shuf; // Returns @[ @(3), @(3), @(1), @(3), @(4), @(5), @(4), @(2) ] (or any other random order)
 ```
