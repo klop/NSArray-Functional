@@ -48,7 +48,7 @@ array.filter(^BOOL (NSNumber *number){
     }); // Returns @[ @(1), @(2) ]
 ```
 ### reduce
-Returns a single element that is the result of applying a function of two arguments cumulatively, from `firstObject` to `lastObject`, on the elements of the array.
+Returns a single element that is the result of applying a function of two arguments cumulatively on each element of the array f( f( f( a[0], a[1] ), a[2] ), a[3] ).
 ```Objective-C
 array.reduce(^NSNumber *(NSNumber *a, NSNumber *b){
 
