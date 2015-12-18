@@ -45,9 +45,30 @@
     return pluck;
 }
 
-- (NSArray *)unique
+- (headBlock)head
 {
-    return [self uniqueFunc];
+    headBlock head = ^NSArray *(NSUInteger sample) {
+        return [self headFunc:sample];
+    };
+    return head;
+}
+
+- (tailBlock)tail
+{
+    tailBlock tail = ^NSArray *(NSUInteger sample) {
+        return [self tailFunc:sample];
+    };
+    return tail;
+}
+
+- (NSArray *)uniq
+{
+    return [self uniqFunc];
+}
+
+- (NSArray *)shuf
+{
+    return [self shufFunc];
 }
 
 #pragma mark - Higher-order functions
@@ -93,11 +114,37 @@
     return [array copy];
 }
 
-- (NSArray *)uniqueFunc
+- (NSArray *)headFunc:(NSUInteger)sample
+{
+    NSRange range = NSMakeRange(0, MIN(self.count, sample));
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
+    return [self objectsAtIndexes:indexSet];
+}
+
+- (NSArray *)tailFunc:(NSUInteger)sample
+{
+    NSUInteger capped = MIN(self.count, sample);
+    NSRange range = NSMakeRange(self.count - capped, self.count - 1);
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
+    return [self objectsAtIndexes:indexSet];
+}
+
+- (NSArray *)uniqFunc
 {
     NSOrderedSet *set = [NSOrderedSet orderedSetWithArray:self];
     return set.array;
 }
 
+- (NSArray *)shufFunc
+{
+    NSMutableArray *array = [self mutableCopy];
+    NSUInteger count = array.count;
+    for (NSUInteger i = 0; i < count - 1; ++i) {
+        NSInteger remainingCount = count - i;
+        NSInteger exchangeIndex = i + arc4random_uniform((u_int32_t )remainingCount);
+        [array exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
+    }
+    return [array copy];
+}
 
 @end

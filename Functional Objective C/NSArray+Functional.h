@@ -16,6 +16,8 @@ typedef NSArray *(^mapBlock)(mapFuncBlock block);
 typedef NSArray *(^filterBlock)(filterFuncBlock block);
 typedef id (^reduceBlock)(reduceFuncBlock block);
 typedef NSArray *(^pluckBlock)(NSString *keyPath);
+typedef NSArray *(^headBlock)(NSUInteger sample);
+typedef NSArray *(^tailBlock)(NSUInteger sample);
 
 @interface NSArray (Functional)
 
@@ -23,6 +25,9 @@ typedef NSArray *(^pluckBlock)(NSString *keyPath);
 @property (nonatomic, copy, readonly) filterBlock filter;
 @property (nonatomic, copy, readonly) reduceBlock reduce;
 @property (nonatomic, copy, readonly) pluckBlock pluck;
-@property (nonatomic, copy, readonly) NSArray *unique;
+@property (nonatomic, copy, readonly) headBlock head;
+@property (nonatomic, copy, readonly) tailBlock tail;
+@property (nonatomic, copy, readonly) NSArray *uniq;
+@property (nonatomic, copy, readonly) NSArray *shuf;
 
 @end
