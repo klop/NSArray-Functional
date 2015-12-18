@@ -15,11 +15,14 @@ typedef id (^reduceFuncBlock)(id reducedObject, id object);
 typedef NSArray *(^mapBlock)(mapFuncBlock block);
 typedef NSArray *(^filterBlock)(filterFuncBlock block);
 typedef id (^reduceBlock)(reduceFuncBlock block);
+typedef NSArray *(^pluckBlock)(NSString *keyPath);
 
 @interface NSArray (Functional)
 
 @property (nonatomic, copy, readonly) mapBlock map;
 @property (nonatomic, copy, readonly) filterBlock filter;
 @property (nonatomic, copy, readonly) reduceBlock reduce;
+@property (nonatomic, copy, readonly) pluckBlock pluck;
+@property (nonatomic, copy, readonly) NSArray *unique;
 
 @end

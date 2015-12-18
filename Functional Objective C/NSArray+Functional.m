@@ -15,48 +15,46 @@
 
 - (mapBlock)map
 {
-    mapBlock wrapper = objc_getAssociatedObject(self, @selector(map));
-    if (wrapper) return wrapper;
-
-    wrapper = ^NSArray *(mapFuncBlock block) {
+    mapBlock wrapper = ^NSArray *(mapFuncBlock block) {
         return [self mapFunc:block];
     };
-
-    objc_setAssociatedObject(self, @selector(map), wrapper, OBJC_ASSOCIATION_COPY_NONATOMIC);
     return wrapper;
 }
 
 - (filterBlock)filter
 {
-    filterBlock wrapper = objc_getAssociatedObject(self, @selector(filter));
-    if (wrapper) return wrapper;
-
-    wrapper = ^NSArray *(filterFuncBlock block) {
+    filterBlock wrapper = ^NSArray *(filterFuncBlock block) {
         return [self filterFunc:block];
     };
-
-    objc_setAssociatedObject(self, @selector(filter), wrapper, OBJC_ASSOCIATION_COPY_NONATOMIC);
     return wrapper;
 }
 
 - (reduceBlock)reduce
 {
-    reduceBlock wrapper = objc_getAssociatedObject(self, @selector(reduce));
-    if (wrapper) return wrapper;
-
-    wrapper = ^id (reduceFuncBlock block) {
+    reduceBlock wrapper = ^id (reduceFuncBlock block) {
         return [self reduceFunc:block];
     };
-
-    objc_setAssociatedObject(self, @selector(reduce), wrapper, OBJC_ASSOCIATION_COPY_NONATOMIC);
     return wrapper;
+}
+
+- (pluckBlock)pluck
+{
+    pluckBlock pluck = ^NSArray *(NSString *keyPath) {
+        return [self pluckFunc:keyPath];
+    };
+    return pluck;
+}
+
+- (NSArray *)unique
+{
+    return [self uniqueFunc];
 }
 
 #pragma mark - Higher-order functions
 
 - (NSArray *)mapFunc:(mapFuncBlock)block
 {
-    NSMutableArray *array = [NSMutableArray arrayWithCapacity:self.count];
+    NSMutableArray *array = [NSMutableArray array];
     for (id object in self) {
         id mapped = block(object);
         if (mapped) [array addObject:mapped];
@@ -66,7 +64,7 @@
 
 - (NSArray *)filterFunc:(filterFuncBlock)block
 {
-    NSMutableArray *array = [NSMutableArray new];
+    NSMutableArray *array = [NSMutableArray array];
     for (id object in self) {
         if (block(object)) {
             [array addObject:object];
@@ -84,6 +82,21 @@
         reduced = block(reduced, object);
     }
     return reduced;
+}
+
+- (NSArray *)pluckFunc:(NSString *)keyPath
+{
+    NSMutableArray *array = [NSMutableArray array];
+    for (id object in self) {
+        [array addObject:[object valueForKeyPath:keyPath]];
+    }
+    return [array copy];
+}
+
+- (NSArray *)uniqueFunc
+{
+    NSOrderedSet *set = [NSOrderedSet orderedSetWithArray:self];
+    return set.array;
 }
 
 
