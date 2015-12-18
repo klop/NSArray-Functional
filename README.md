@@ -24,7 +24,10 @@ NSLog(@"The sum is: %li!", (long)sum.integerValue); // "The sum is: 55!"
 ```
 ## Functions
 
-__Example array__: `NSArray *array = @[ @(1), @(2), @(3), @(3), @(3), @(4), @(4), @(5) ];`
+All examples use the array:
+```Objective-C
+NSArray *array = @[ @(1), @(2), @(3), @(3), @(3), @(4), @(4), @(5) ];
+```
 
 ### map
 Returns an array containing the results of calling a function on each element of the array.
