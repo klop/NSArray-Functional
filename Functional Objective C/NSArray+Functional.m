@@ -124,7 +124,7 @@
 - (NSArray *)tailFunc:(NSUInteger)sample
 {
     NSUInteger capped = MIN(self.count, sample);
-    NSRange range = NSMakeRange(self.count - capped, self.count - 1);
+    NSRange range = NSMakeRange(self.count - capped, sample);
     NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
     return [self objectsAtIndexes:indexSet];
 }
