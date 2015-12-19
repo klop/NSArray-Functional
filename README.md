@@ -77,7 +77,7 @@ Returns an array of unique objects.
 array.uniq; // Returns @[ @(1), @(2), @(3), @(4), @(5) ]
 ```
 ### shuf
-Returns an randomly sorted array.
+Returns a randomly sorted array.
 ```Objective-C
 array.shuf; // Returns @[ @(3), @(3), @(1), @(3), @(4), @(5), @(4), @(2) ] (or any other random order)
 ```
