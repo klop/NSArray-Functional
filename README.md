@@ -30,7 +30,7 @@ NSArray *array = @[ @(1), @(2), @(3), @(3), @(3), @(4), @(4), @(5) ];
 ```
 
 ### map
-Returns an array containing the results of calling a function on each element of the array.
+Returns the results of calling a function on each element of the array.
 ```Objective-C
 array.map(^NSNumber *(NSNumber *number){
 
@@ -39,7 +39,7 @@ array.map(^NSNumber *(NSNumber *number){
     }); // Returns @[ @(1), @(4), @(9), @(9), @(9), @(16), @(16), @(25) ]
 ```
 ### filter
-Returns an array of elements that pass a test.
+Returns all elements that pass a test.
 ```Objective-C
 array.filter(^BOOL (NSNumber *number){
 
@@ -57,27 +57,27 @@ array.reduce(^NSNumber *(NSNumber *a, NSNumber *b){
     }); // Returns @(25)
 ```
 ### pluck
-Returns an array of property values for a given key path; a common use case of the `map` function.
+Returns the property values for a given key path; a common use case of the `map` function.
 ```Objective-C
 array.pluck(@"stringValue"); // Returns @[ @"1", @"2", @"3", @"3", @"3", @"4", @"4", @"5" ]
 ```
 ### head
-Returns an array containing the first `n` elements of the array.
+Returns the first `n` elements of the array.
 ```Objective-C
 array.head(4); // Returns @[ @(1), @(2), @(3), @(3) ]
 ```
 ### tail
-Returns an array containing the last `n` elements of the array.
+Returns the last `n` elements of the array.
 ```Objective-C
 array.tail(2); // Returns @[ @(4), @(5) ]
 ```
 ### uniq
-Returns an array of unique objects.
+Returns unique objects.
 ```Objective-C
 array.uniq; // Returns @[ @(1), @(2), @(3), @(4), @(5) ]
 ```
 ### shuf
-Returns a randomly sorted array.
+Returns all elements in random order.
 ```Objective-C
 array.shuf; // Returns @[ @(3), @(3), @(1), @(3), @(4), @(5), @(4), @(2) ] (or any other random order)
 ```
